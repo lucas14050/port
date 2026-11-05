@@ -1,0 +1,1613 @@
+/* ==========================================================================
+   LUCAS SOUZA — PORTFÓLIO PESSOAL
+   Identidade: Minimalista, Tecnológico, Elegante & Autoral
+   Fundo 100% Branco (#FFFFFF) com Elementos Escuros & Acentos em Azul
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. VARIÁVEIS DO SISTEMA DE DESIGN
+   -------------------------------------------------------------------------- */
+:root {
+  /* Fundo principal requerido: 100% Branco Puro */
+  --bg-primary: #FFFFFF;
+  --bg-secondary: #FAFAFB;
+
+  /* Cores escuras predominantes */
+  --color-black: #0B0F17;
+  --color-navy-dark: #0D1420;
+  --color-navy-medium: #131E2E;
+  --color-navy-light: #1A273A;
+  
+  /* Tons de azul-acinzentado e textos */
+  --color-slate-900: #0F172A;
+  --color-slate-800: #1E293B;
+  --color-slate-700: #334155;
+  --color-slate-600: #475569;
+  --color-slate-500: #64748B;
+  --color-slate-400: #94A3B8;
+  --color-slate-300: #CBD5E1;
+  --color-slate-200: #E2E8F0;
+  --color-slate-100: #F1F5F9;
+
+  /* Acentos tecnológicos discretos */
+  --accent-blue: #2563EB;
+  --accent-cyan: #38BDF8;
+  --accent-cyan-glow: rgba(56, 189, 248, 0.25);
+  
+  /* Tipografia */
+  --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'Space Grotesk', monospace;
+
+  /* Curvas de animação fluidas com desaceleração */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  
+  /* Dimensões & Sombras */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 24px;
+  --radius-xl: 32px;
+  --radius-pill: 9999px;
+
+  --shadow-subtle: 0 4px 20px -2px rgba(15, 23, 42, 0.05);
+  --shadow-card: 0 20px 40px -15px rgba(13, 20, 32, 0.35);
+  --shadow-floating: 0 25px 60px -15px rgba(15, 23, 42, 0.25);
+}
+
+/* --------------------------------------------------------------------------
+   2. RESET & BASE
+   -------------------------------------------------------------------------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--color-slate-800);
+  font-family: var(--font-main);
+  min-height: 100vh;
+  line-height: 1.6;
+  overflow-x: hidden;
+  position: relative;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Seleção de texto moderna */
+::selection {
+  background-color: var(--color-black);
+  color: #FFFFFF;
+}
+
+/* Scrollbar refinada */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #FFFFFF;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-slate-300);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-slate-500);
+}
+
+/* --------------------------------------------------------------------------
+   3. MENU DE NAVEGAÇÃO SUPERIOR CONECTADO (ESTRUTURA EM LINHA ÚNICA)
+   -------------------------------------------------------------------------- */
+.top-header {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  padding: 24px 48px 12px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: padding 0.3s ease, background 0.3s ease;
+}
+
+.nav-track {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1320px;
+  margin: 0 auto;
+  position: relative;
+}
+
+/* Linha conectora fina entre os itens do menu */
+.nav-connector {
+  flex: 1;
+  height: 1px;
+  background: var(--color-slate-200);
+  margin: 0 28px;
+  position: relative;
+  overflow: hidden;
+}
+
+.nav-line {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    var(--color-slate-300) 0%, 
+    var(--color-slate-200) 50%, 
+    var(--color-slate-300) 100%
+  );
+}
+
+/* Controles de navegação (sem ícones ou emojis) */
+.nav-control {
+  font-family: var(--font-main);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  outline: none;
+  white-space: nowrap;
+  letter-spacing: -0.01em;
+  transition: all 0.35s var(--ease-out-expo);
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Item "Início" — Pílula escura ativa padrão */
+.nav-pill {
+  padding: 8px 28px;
+  border-radius: var(--radius-pill);
+  background: var(--color-black);
+  color: #FFFFFF;
+  box-shadow: 0 4px 14px rgba(11, 15, 23, 0.15);
+}
+
+.nav-pill:hover {
+  background: var(--color-navy-medium);
+  transform: translateY(-1px);
+}
+
+/* Item "Sobre Mim" — Centralizado, limpo */
+.nav-center {
+  padding: 8px 24px;
+  border-radius: var(--radius-pill);
+  color: var(--color-slate-900);
+  background: transparent;
+}
+
+.nav-center:hover {
+  color: var(--color-black);
+  background: var(--color-slate-100);
+}
+
+/* Item "Projetos" — Alinhado à direita com contorno refinado */
+.nav-pill-outline {
+  padding: 7px 26px;
+  border-radius: var(--radius-pill);
+  background: transparent;
+  color: var(--color-slate-900);
+  border: 1px solid var(--color-slate-400);
+}
+
+.nav-pill-outline:hover {
+  border-color: var(--color-black);
+  color: var(--color-black);
+  transform: translateY(-1px);
+}
+
+/* Estados ativos dinâmicos controlados por script */
+.nav-control.active {
+  background: var(--color-black) !important;
+  color: #FFFFFF !important;
+  border-color: var(--color-black) !important;
+  box-shadow: 0 4px 16px rgba(11, 15, 23, 0.2);
+}
+
+.nav-control:focus-visible {
+  outline: 2px solid var(--accent-blue);
+  outline-offset: 3px;
+}
+
+/* --------------------------------------------------------------------------
+   4. PALCO PRINCIPAL (HERO + ELEMENTO 3D)
+   -------------------------------------------------------------------------- */
+.page-container {
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 10px 48px 36px;
+  min-height: calc(100vh - 86px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: opacity 0.45s ease, filter 0.45s ease, transform 0.45s var(--ease-out-expo);
+}
+
+/* Efeito de segundo plano suave quando um cartão está expandido */
+.page-container.is-dimmed {
+  opacity: 0.15;
+  filter: blur(4px);
+  transform: scale(0.985);
+  pointer-events: none;
+  user-select: none;
+}
+
+.hero-stage {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  align-items: center;
+  gap: 40px;
+  padding: 24px 0 16px;
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+}
+
+/* Hero Esquerda: Apresentação e Tipografia */
+.hero-text-block {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: 620px;
+  z-index: 10;
+}
+
+/* "Olá, eu sou" com espaçamento elegante */
+.hero-greeting {
+  font-size: 1.0625rem;
+  font-weight: 500;
+  color: var(--color-slate-500);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  display: inline-block;
+  animation: heroSlideIn 0.9s var(--ease-out-expo) 0.05s both;
+}
+
+/* Título Hero: "Lucas Souza" em duas linhas com contraste marcante */
+.hero-title {
+  display: flex;
+  flex-direction: column;
+  font-size: clamp(3.5rem, 6.8vw, 5.75rem);
+  font-weight: 800;
+  line-height: 0.96;
+  letter-spacing: -0.04em;
+  margin-bottom: 24px;
+  animation: heroSlideIn 1.05s var(--ease-out-expo) 0.12s both;
+}
+
+.name-first {
+  color: var(--color-black);
+}
+
+.name-row {
+  display: inline-flex;
+  align-items: center;
+}
+
+.name-last {
+  color: var(--color-slate-600);
+}
+
+/* Barra vertical marcante ao lado de "Souza" */
+.name-cursor {
+  display: inline-block;
+  width: 5px;
+  height: 0.85em;
+  background-color: var(--color-slate-700);
+  margin-left: 14px;
+  border-radius: 2px;
+  animation: cursorBlink 1.4s ease-in-out infinite;
+}
+
+@keyframes cursorBlink {
+  0%, 100% { opacity: 0.9; }
+  50% { opacity: 0.2; }
+}
+
+/* Biografia e apresentação */
+.hero-bio {
+  font-size: clamp(1.0625rem, 1.6vw, 1.25rem);
+  font-weight: 400;
+  color: var(--color-slate-700);
+  line-height: 1.55;
+  margin-bottom: 22px;
+  max-width: 520px;
+  animation: heroSlideIn 1.15s var(--ease-out-expo) 0.2s both;
+}
+
+.hero-bio strong {
+  color: var(--color-black);
+  font-weight: 700;
+}
+
+/* Linha fina de acento abaixo da apresentação */
+.hero-accent-line {
+  width: 70px;
+  height: 2px;
+  background: var(--color-slate-300);
+  border-radius: 2px;
+  animation: heroLineExpand 1.1s var(--ease-out-expo) 0.3s both;
+}
+
+@keyframes heroLineExpand {
+  0% {
+    width: 0;
+    opacity: 0;
+  }
+  100% {
+    width: 70px;
+    opacity: 1;
+  }
+}
+
+/* Animação fluida da esquerda para a direita com desaceleração suave */
+@keyframes heroSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateX(-90px);
+  }
+  60% {
+    opacity: 0.95;
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   5. ELEMENTO VISUAL PRINCIPAL — PLANETA 3D ANIMADO WEBGL THREE.JS
+   -------------------------------------------------------------------------- */
+.hero-planet-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  min-height: 420px;
+  user-select: none;
+}
+
+.planet-canvas-container {
+  position: relative;
+  width: 100%;
+  max-width: 520px;
+  height: 410px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: grab;
+  min-width: 0;
+}
+
+.planet-canvas-container:active {
+  cursor: grabbing;
+}
+
+.planet-canvas {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+  outline: none;
+}
+
+/* Brilho atmosférico sutil */
+.planet-glow-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 320px;
+  height: 320px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.08) 0%, rgba(37, 99, 235, 0.03) 45%, transparent 70%);
+  pointer-events: none;
+  filter: blur(16px);
+  z-index: 1;
+}
+
+/* Sombra suave no chão gerando profundidade e efeito de flutuação */
+.planet-shadow {
+  width: 280px;
+  height: 26px;
+  margin-top: -15px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center, 
+    rgba(15, 23, 42, 0.26) 0%, 
+    rgba(15, 23, 42, 0.10) 40%, 
+    rgba(15, 23, 42, 0.02) 65%, 
+    transparent 80%
+  );
+  filter: blur(6px);
+  pointer-events: none;
+  transition: transform 0.4s ease, opacity 0.4s ease;
+  animation: shadowFloat 6s ease-in-out infinite;
+}
+
+@keyframes shadowFloat {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.85;
+  }
+  50% {
+    transform: scale(0.92);
+    opacity: 0.65;
+  }
+}
+
+/* Dica discreta de interação abaixo do planeta */
+.planet-hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--color-slate-400);
+  letter-spacing: 0.04em;
+  opacity: 0.85;
+  transition: opacity 0.3s ease;
+}
+
+.hint-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--accent-cyan);
+  box-shadow: 0 0 8px var(--accent-cyan);
+  animation: hintPulse 2s infinite ease-in-out;
+}
+
+@keyframes hintPulse {
+  0%, 100% { transform: scale(1); opacity: 0.9; }
+  50% { transform: scale(1.4); opacity: 0.4; }
+}
+
+/* --------------------------------------------------------------------------
+   6. SEÇÃO DE CARTÕES INFERIORES COMPACTOS (ESTADO BASE)
+   -------------------------------------------------------------------------- */
+.cards-preview-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  margin-top: 32px;
+  position: relative;
+  z-index: 20;
+}
+
+/* Cartões escuros com cantos arredondados e detalhes discretos */
+.preview-card {
+  position: relative;
+  background: linear-gradient(145deg, #0A0F1A 0%, #111A29 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-lg);
+  padding: 30px 34px;
+  color: #FFFFFF;
+  cursor: pointer;
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  transition: transform 0.4s var(--ease-out-expo), 
+              border-color 0.4s ease, 
+              box-shadow 0.4s ease;
+  outline: none;
+}
+
+.preview-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 26px 50px -12px rgba(11, 15, 23, 0.45);
+}
+
+.preview-card:focus-visible {
+  outline: 2px solid var(--accent-cyan);
+  outline-offset: 3px;
+}
+
+/* Textura gráfica de ondas sutis em background do cartão */
+.card-bg-waves {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  opacity: 0.12;
+  background-image: radial-gradient(circle at 100% 100%, rgba(56, 189, 248, 0.15) 0%, transparent 60%),
+                    radial-gradient(circle at 0% 0%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
+  pointer-events: none;
+  background-size: cover;
+}
+
+/* Linha do topo do cartão: Ícone em quadrado + Título + Sparkle */
+.card-top-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+  position: relative;
+  z-index: 2;
+}
+
+.card-icon-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+  flex-shrink: 0;
+  transition: background 0.3s ease;
+}
+
+.card-icon-avatar svg {
+  width: 22px;
+  height: 22px;
+}
+
+.preview-card:hover .card-icon-avatar {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.22);
+}
+
+.card-title {
+  font-size: 1.375rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  letter-spacing: -0.02em;
+}
+
+/* Estrela de 4 pontas no canto superior direito do cartão Sobre Mim */
+.card-sparkle {
+  margin-left: auto;
+  width: 20px;
+  height: 20px;
+  color: var(--accent-cyan);
+  opacity: 0.85;
+  filter: drop-shadow(0 0 6px rgba(56, 189, 248, 0.6));
+  transition: transform 0.5s var(--ease-spring);
+}
+
+.preview-card:hover .card-sparkle {
+  transform: rotate(90deg) scale(1.15);
+}
+
+/* Texto do cartão */
+.card-description {
+  font-size: 0.96875rem;
+  color: var(--color-slate-300);
+  line-height: 1.6;
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 2;
+}
+
+.card-description .highlight {
+  color: #FFFFFF;
+  font-weight: 600;
+}
+
+/* Indicadores de ação nos cartões compactos */
+.card-action-cue {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.8125rem;
+  color: var(--color-slate-400);
+  font-weight: 500;
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  padding-top: 14px;
+  position: relative;
+  z-index: 2;
+}
+
+.cue-arrow {
+  font-size: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.preview-card:hover .cue-arrow {
+  transform: translate(3px, -3px);
+  color: #FFFFFF;
+}
+
+.card-footer-action {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  padding-top: 12px;
+  position: relative;
+  z-index: 2;
+}
+
+.card-footer-action .cue-label {
+  font-size: 0.8125rem;
+  color: var(--color-slate-400);
+}
+
+.card-circle-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+  transition: all 0.3s var(--ease-out-expo);
+}
+
+.card-circle-btn svg {
+  width: 18px;
+  height: 18px;
+  transition: transform 0.3s ease;
+}
+
+.preview-card:hover .card-circle-btn {
+  background: var(--accent-blue);
+  border-color: var(--accent-blue);
+  box-shadow: 0 0 16px rgba(37, 99, 235, 0.5);
+}
+
+.preview-card:hover .card-circle-btn svg {
+  transform: translateX(2px);
+}
+
+/* --------------------------------------------------------------------------
+   7. SISTEMA DE EXPANSÃO / ZOOM DOS CARTÕES (MODAIS FLUIDOS)
+   -------------------------------------------------------------------------- */
+/* Fundo com desfoque ao expandir */
+.zoom-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(255, 255, 255, 0.78);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 150;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.zoom-backdrop.is-visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* Cartão expandido em tela cheia */
+.expanded-card-modal {
+  position: fixed;
+  z-index: 200;
+  background: linear-gradient(150deg, #0A0F1A 0%, #0E1624 50%, #121C2D 100%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-xl);
+  color: #FFFFFF;
+  box-shadow: 0 35px 80px -15px rgba(11, 15, 23, 0.6);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  outline: none;
+  /* Transições coordenadas para o zoom suave partindo da posição de origem */
+  transition: top 0.52s var(--ease-out-expo),
+              left 0.52s var(--ease-out-expo),
+              width 0.52s var(--ease-out-expo),
+              height 0.52s var(--ease-out-expo),
+              border-radius 0.52s ease,
+              opacity 0.42s ease,
+              box-shadow 0.52s ease;
+}
+
+/* Textura sutil no fundo do modal */
+.modal-bg-pattern {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 0.1;
+  background-image: radial-gradient(rgba(56, 189, 248, 0.2) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+/* Cabeçalho do modal */
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 36px 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  position: relative;
+  z-index: 10;
+  background: rgba(10, 15, 26, 0.85);
+  backdrop-filter: blur(10px);
+}
+
+.modal-badge-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--color-slate-400);
+  text-transform: uppercase;
+}
+
+.badge-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--accent-cyan);
+  box-shadow: 0 0 10px var(--accent-cyan);
+}
+
+/* Botão de fechar do modal */
+.modal-close-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 18px;
+  border-radius: var(--radius-pill);
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: #FFFFFF;
+  font-family: var(--font-main);
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.25s ease;
+}
+
+.modal-close-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-1px);
+}
+
+.close-kbd {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.12);
+  color: var(--color-slate-300);
+}
+
+.close-icon {
+  width: 16px;
+  height: 16px;
+}
+
+/* Corpo rolável do modal */
+.modal-scroll-body {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 36px 40px 48px;
+  position: relative;
+  z-index: 5;
+  scrollbar-gutter: stable;
+}
+
+.modal-scroll-body::-webkit-scrollbar {
+  width: 6px;
+}
+.modal-scroll-body::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 3px;
+}
+.modal-scroll-body::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.modal-inner-container {
+  max-width: 1020px;
+  margin: 0 auto;
+}
+
+/* Título de destaque no modal */
+.modal-hero-heading {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 28px;
+}
+
+.modal-avatar-wrapper {
+  width: 58px;
+  height: 58px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+  flex-shrink: 0;
+}
+
+.modal-avatar-wrapper svg {
+  width: 28px;
+  height: 28px;
+}
+
+.modal-title {
+  font-size: clamp(2rem, 3.5vw, 2.75rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: #FFFFFF;
+}
+
+.modal-lead-subtitle {
+  font-size: 1.0625rem;
+  color: var(--color-slate-400);
+  margin-top: 4px;
+}
+
+/* Parágrafo textual principal requerido destacado */
+.modal-quote-block {
+  padding: 24px 30px;
+  background: rgba(255, 255, 255, 0.04);
+  border-left: 3px solid var(--accent-cyan);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  margin-bottom: 36px;
+}
+
+.quote-text {
+  font-size: 1.1875rem;
+  font-weight: 400;
+  line-height: 1.7;
+  color: #F8FAFC;
+}
+
+/* Grade de detalhes da seção Sobre Mim */
+.modal-details-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin-bottom: 36px;
+}
+
+.detail-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: var(--radius-md);
+  padding: 26px;
+  transition: border-color 0.3s ease;
+}
+
+.detail-card:hover {
+  border-color: rgba(255, 255, 255, 0.16);
+}
+
+.detail-icon-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.detail-glyph {
+  font-size: 1.375rem;
+}
+
+.detail-icon-title h3 {
+  font-size: 1.1875rem;
+  font-weight: 700;
+  color: #FFFFFF;
+}
+
+.detail-text {
+  font-size: 0.9375rem;
+  color: var(--color-slate-300);
+  line-height: 1.65;
+  margin-bottom: 14px;
+}
+
+.detail-text strong {
+  color: #FFFFFF;
+}
+
+.detail-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.detail-list li {
+  font-size: 0.875rem;
+  color: var(--color-slate-300);
+  position: relative;
+  padding-left: 18px;
+}
+
+.detail-list li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--accent-cyan);
+}
+
+/* Tags de interesses */
+.interest-tags-flex {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.tag-pill {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--color-slate-200);
+}
+
+/* Badges de valores */
+.values-badges-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+.value-item {
+  padding: 10px 14px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 8px;
+  border-left: 2px solid var(--accent-blue);
+}
+
+.value-name {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #FFFFFF;
+}
+
+.value-desc {
+  display: block;
+  font-size: 0.8125rem;
+  color: var(--color-slate-400);
+}
+
+/* Rodapé do modal */
+.modal-footer-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  margin-top: 20px;
+}
+
+.status-indicator {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.875rem;
+  color: var(--color-slate-400);
+}
+
+.status-pulse-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #10B981;
+  box-shadow: 0 0 10px #10B981;
+}
+
+.footer-hint {
+  font-size: 0.8125rem;
+  color: var(--color-slate-500);
+}
+
+.modal-return-btn {
+  font-family: var(--font-main);
+  font-size: 0.875rem;
+  font-weight: 600;
+  padding: 10px 22px;
+  border-radius: var(--radius-pill);
+  background: rgba(255, 255, 255, 0.09);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: #FFFFFF;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.25s ease;
+}
+
+.modal-return-btn:hover {
+  background: #FFFFFF;
+  color: var(--color-black);
+  transform: translateY(-2px);
+}
+
+/* --------------------------------------------------------------------------
+   8. MEUS PROJETOS — GRADE DOS 3 PROJETOS CONCEITUAIS
+   -------------------------------------------------------------------------- */
+.projects-showcase-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-bottom: 36px;
+}
+
+.project-showcase-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+}
+
+.project-showcase-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.4);
+}
+
+.project-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.project-category-badge {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent-cyan);
+}
+
+.project-index {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  color: var(--color-slate-500);
+}
+
+/* Área Visual de Prévia Ilustrativa Conceitual */
+.project-preview-viewport {
+  width: 100%;
+  height: 180px;
+  background: rgba(6, 10, 18, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: var(--radius-md);
+  margin-bottom: 20px;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.preview-mockup {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  padding: 10px;
+}
+
+.mockup-header-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 6px 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  margin-bottom: 8px;
+}
+
+.mockup-dots {
+  display: flex;
+  gap: 5px;
+}
+
+.mockup-dots span {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.mockup-title-tab {
+  font-size: 0.6875rem;
+  color: var(--color-slate-400);
+}
+
+.mockup-status-chip {
+  font-size: 0.625rem;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: rgba(16, 185, 129, 0.15);
+  color: #10B981;
+}
+
+/* TaskFlow Preview */
+.mockup-content-body {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.mockup-task-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px;
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 6px;
+  font-size: 0.6875rem;
+}
+
+.task-check {
+  color: #10B981;
+  font-weight: bold;
+}
+
+.pulse-circle {
+  color: var(--accent-cyan);
+}
+
+.task-name {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--color-slate-200);
+}
+
+.task-tag {
+  font-size: 0.5625rem;
+  padding: 1px 5px;
+  border-radius: 3px;
+}
+
+.tag-high {
+  background: rgba(239, 68, 68, 0.15);
+  color: #EF4444;
+}
+.tag-med {
+  background: rgba(56, 189, 248, 0.15);
+  color: var(--accent-cyan);
+}
+.tag-active {
+  background: rgba(245, 158, 11, 0.15);
+  color: #F59E0B;
+}
+
+/* CodeLab Preview */
+.mockup-run-btn {
+  font-size: 0.625rem;
+  padding: 2px 7px;
+  border-radius: 4px;
+  background: var(--accent-blue);
+  color: #FFFFFF;
+}
+
+.mockup-code-body {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  font-size: 0.6875rem;
+  line-height: 1.4;
+}
+
+.code-line.indent {
+  padding-left: 14px;
+}
+
+.c-keyword { color: #F43F5E; }
+.c-var { color: #38BDF8; }
+.c-prop { color: #A78BFA; }
+.c-str { color: #34D399; }
+
+.mockup-terminal-output {
+  margin-top: 6px;
+  padding: 4px 6px;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 4px;
+  font-size: 0.625rem;
+  color: #10B981;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* SportTrack Preview */
+.chip-sport {
+  background: rgba(56, 189, 248, 0.15);
+  color: var(--accent-cyan);
+}
+
+.mockup-sport-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.sport-stat-box {
+  background: rgba(255, 255, 255, 0.03);
+  padding: 5px;
+  border-radius: 6px;
+  text-align: center;
+}
+
+.stat-num {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #FFFFFF;
+}
+
+.stat-lbl {
+  display: block;
+  font-size: 0.5625rem;
+  color: var(--color-slate-400);
+}
+
+.mockup-chart-bars {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  height: 48px;
+  gap: 4px;
+  padding: 0 4px;
+}
+
+.bar-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  justify-content: flex-end;
+}
+
+.bar {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 2px 2px 0 0;
+  transition: height 0.5s ease;
+}
+
+.bar-col.active .bar {
+  background: var(--accent-cyan);
+  box-shadow: 0 0 8px rgba(56, 189, 248, 0.5);
+}
+
+.bar-day {
+  font-size: 0.5625rem;
+  color: var(--color-slate-500);
+  margin-top: 2px;
+}
+
+/* Informações do projeto abaixo da prévia */
+.project-info-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.project-heading {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin-bottom: 8px;
+}
+
+.project-paragraph {
+  font-size: 0.875rem;
+  color: var(--color-slate-300);
+  line-height: 1.6;
+  margin-bottom: 16px;
+  flex: 1;
+}
+
+.project-tech-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: auto;
+}
+
+.tech-tag {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--color-slate-300);
+}
+
+/* Caixa explicativa de projetos conceituais */
+.projects-disclaimer-box {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 18px 22px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-md);
+  margin-bottom: 24px;
+}
+
+.disclaimer-icon {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: rgba(56, 189, 248, 0.15);
+  color: var(--accent-cyan);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+.disclaimer-text {
+  font-size: 0.84375rem;
+  color: var(--color-slate-400);
+  line-height: 1.5;
+}
+
+.disclaimer-text strong {
+  color: var(--color-slate-200);
+}
+
+/* --------------------------------------------------------------------------
+   9. RODAPÉ DA PÁGINA
+   -------------------------------------------------------------------------- */
+.site-footer {
+  padding: 24px 48px;
+  border-top: 1px solid var(--color-slate-200);
+  margin-top: 40px;
+  background: #FFFFFF;
+}
+
+.footer-content {
+  max-width: 1320px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  font-size: 0.8125rem;
+  color: var(--color-slate-500);
+}
+
+.footer-author {
+  font-weight: 700;
+  color: var(--color-black);
+}
+
+.footer-sep {
+  color: var(--color-slate-300);
+}
+
+/* --------------------------------------------------------------------------
+   10. RESPONSIVIDADE (TABLETS & CELULARES)
+   -------------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .top-header {
+    padding: 18px 24px 10px;
+  }
+
+  .page-container {
+    padding: 10px 24px 32px;
+  }
+
+  .hero-stage {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    text-align: left;
+  }
+
+  /* O nome permanece sempre o destaque em cima, planeta abaixo */
+  .hero-text-block {
+    order: 1;
+    max-width: 100%;
+  }
+
+  .hero-planet-wrapper {
+    order: 2;
+    min-height: 340px;
+  }
+
+  .planet-canvas-container {
+    height: 320px;
+  }
+
+  .cards-preview-section {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .projects-showcase-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .modal-details-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .top-header {
+    padding: 12px 14px 6px;
+  }
+
+  .nav-track {
+    width: 100%;
+  }
+
+  .nav-connector {
+    margin: 0 6px;
+    min-width: 10px;
+  }
+
+  .nav-control {
+    font-size: 0.78125rem;
+    padding: 5px 8px;
+  }
+
+  .nav-pill {
+    padding: 6px 14px;
+  }
+
+  .nav-center {
+    padding: 6px 6px;
+  }
+
+  .nav-pill-outline {
+    padding: 5px 12px;
+  }
+
+  .page-container {
+    padding: 6px 16px 24px;
+  }
+
+  .hero-greeting {
+    font-size: 0.875rem;
+    letter-spacing: 0.14em;
+    margin-bottom: 8px;
+  }
+
+  .hero-title {
+    font-size: 2.85rem;
+    margin-bottom: 16px;
+  }
+
+  .name-cursor {
+    width: 4px;
+    height: 0.85em;
+    margin-left: 8px;
+  }
+
+  .hero-bio {
+    font-size: 0.96875rem;
+    line-height: 1.5;
+    margin-bottom: 18px;
+  }
+
+  .hero-planet-wrapper {
+    min-height: 250px;
+    margin: 4px 0 16px;
+  }
+
+  .planet-canvas-container {
+    max-width: 280px;
+    height: 240px;
+  }
+
+  .planet-shadow {
+    width: 190px;
+    height: 18px;
+    margin-top: -10px;
+  }
+
+  .cards-preview-section {
+    margin-top: 16px;
+    gap: 16px;
+  }
+
+  .preview-card {
+    padding: 22px 18px;
+    border-radius: var(--radius-md);
+  }
+
+  .modal-header {
+    padding: 16px 18px;
+  }
+
+  .modal-scroll-body {
+    padding: 20px 16px;
+  }
+
+  .modal-title {
+    font-size: 1.65rem;
+  }
+
+  .modal-quote-block {
+    padding: 14px 16px;
+  }
+
+  .quote-text {
+    font-size: 0.9375rem;
+  }
+
+  .modal-footer-bar {
+    flex-direction: column;
+    gap: 14px;
+    align-items: stretch;
+  }
+
+  .modal-return-btn {
+    text-align: center;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   11. SUPORTE A PREFERS-REDUCED-MOTION
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .hero-greeting,
+  .hero-title,
+  .hero-bio,
+  .hero-accent-line {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .planet-shadow {
+    animation: none !important;
+  }
+}

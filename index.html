@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lucas Souza — Portfólio Pessoal</title>
+  <meta name="description" content="Portfólio de Lucas Souza — Estudante de ensino médio técnico, apaixonado por programação, esportes e aprendizado contínuo.">
+
+  <!-- Google Fonts: Plus Jakarta Sans & Space Grotesk -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+
+  <!-- Three.js local -->
+  <script src="three.min.js"></script>
+
+  <!-- Estilos principais -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ========================================== -->
+  <!-- 1. MENU DE NAVEGAÇÃO SUPERIOR CONECTADO    -->
+  <!-- ========================================== -->
+  <header class="top-header" id="top-header" role="banner">
+    <nav class="nav-track" aria-label="Navegação principal">
+      <!-- Item Esquerdo: Início -->
+      <button class="nav-control nav-pill active" id="nav-btn-inicio" data-target="inicio" aria-label="Ir para Início">
+        Início
+      </button>
+
+      <!-- Linha conectora esquerda -->
+      <div class="nav-connector" aria-hidden="true">
+        <span class="nav-line"></span>
+      </div>
+
+      <!-- Item Central: Sobre Mim -->
+      <button class="nav-control nav-center" id="nav-btn-sobre" data-target="sobre-mim" aria-label="Expandir seção Sobre Mim">
+        Sobre Mim
+      </button>
+
+      <!-- Linha conectora direita -->
+      <div class="nav-connector" aria-hidden="true">
+        <span class="nav-line"></span>
+      </div>
+
+      <!-- Item Direito: Projetos -->
+      <button class="nav-control nav-pill-outline" id="nav-btn-projetos" data-target="projetos" aria-label="Expandir seção Projetos">
+        Projetos
+      </button>
+    </nav>
+  </header>
+
+  <!-- ========================================== -->
+  <!-- CONTEÚDO PRINCIPAL (PALCO HERO + CARTÕES) -->
+  <!-- ========================================== -->
+  <main class="page-container" id="main-content">
+
+    <!-- SEÇÃO HERO INICIAL -->
+    <section class="hero-stage" id="hero-stage" aria-label="Apresentação inicial">
+      
+      <!-- HERO ESQUERDA: NOME E APRESENTAÇÃO -->
+      <div class="hero-text-block">
+        <span class="hero-greeting" id="hero-greeting">Olá, eu sou</span>
+
+        <h1 class="hero-title" id="hero-name" aria-label="Lucas Souza">
+          <span class="name-first">Lucas</span>
+          <span class="name-row">
+            <span class="name-last">Souza</span>
+            <span class="name-cursor" aria-hidden="true"></span>
+          </span>
+        </h1>
+
+        <p class="hero-bio" id="hero-bio">
+          Estudante de ensino médio técnico, apaixonado por <strong>programação</strong>, <strong>esportes</strong> e por aprender coisas novas.
+        </p>
+
+        <div class="hero-accent-line" aria-hidden="true"></div>
+      </div>
+
+      <!-- HERO DIREITA: PLANETA 3D INTERATIVO WEBGL -->
+      <div class="hero-planet-wrapper" id="planet-wrapper" aria-label="Elemento 3D interativo: Planeta com órbitas e satélites">
+        <div class="planet-canvas-container" id="planet-container">
+          <canvas id="planet-canvas" class="planet-canvas" aria-label="Planeta tridimensional escuro animado"></canvas>
+          <div class="planet-glow-overlay" aria-hidden="true"></div>
+        </div>
+        <!-- Sombra suave no chão dando sensação de profundidade e flutuação -->
+        <div class="planet-shadow" id="planet-shadow" aria-hidden="true"></div>
+      </div>
+
+    </section>
+
+    <!-- ========================================== -->
+    <!-- CARTÕES INFERIORES COMPACTOS (ESTADO BASE) -->
+    <!-- ========================================== -->
+    <section class="cards-preview-section" id="cards-preview-section" aria-label="Seções interativas">
+      
+      <!-- CARTÃO 1: SOBRE MIM -->
+      <article class="preview-card card-sobre" id="card-sobre" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Abrir detalhes Sobre Mim">
+        <!-- Textura gráfica de ondas sutis em background -->
+        <div class="card-bg-waves" aria-hidden="true"></div>
+        
+        <div class="card-top-row">
+          <div class="card-icon-avatar" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+          </div>
+          <h2 class="card-title">Sobre Mim</h2>
+          <div class="card-sparkle" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 0L14.59 9.41L24 12L14.59 14.59L12 24L9.41 14.59L0 12L9.41 9.41L12 0Z"/>
+            </svg>
+          </div>
+        </div>
+
+        <p class="card-description">
+          Sou um estudante dedicado, interessado em <span class="highlight">tecnologia</span>, <span class="highlight">programação</span> e no mundo dos <span class="highlight">esportes</span>. Sempre em busca de novos conhecimentos e desafios.
+        </p>
+      </article>
+
+      <!-- CARTÃO 2: MEUS PROJETOS -->
+      <article class="preview-card card-projetos" id="card-projetos" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Abrir detalhes de Meus Projetos">
+        <!-- Textura gráfica de ondas sutis em background -->
+        <div class="card-bg-waves" aria-hidden="true"></div>
+
+        <div class="card-top-row">
+          <div class="card-icon-avatar" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+            </svg>
+          </div>
+          <h2 class="card-title">Meus Projetos</h2>
+        </div>
+
+        <p class="card-description">
+          Confira alguns dos projetos que desenvolvi e que mostram um pouco do meu trabalho e das minhas habilidades.
+        </p>
+
+        <div class="card-footer-action">
+          <span class="cue-label">3 projetos conceituais</span>
+          <div class="card-circle-btn" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </div>
+        </div>
+      </article>
+
+    </section>
+
+  </main>
+
+  <!-- ============================================================ -->
+  <!-- SISTEMA DE EXPANSÃO / ZOOM DOS CARTÕES (MODAIS FLUIDOS)     -->
+  <!-- ============================================================ -->
+  <div class="zoom-backdrop" id="zoom-backdrop" aria-hidden="true"></div>
+
+  <!-- CARTÃO EXPANDIDO: SOBRE MIM -->
+  <div class="expanded-card-modal" id="expanded-sobre" role="dialog" aria-modal="true" aria-labelledby="modal-sobre-title" hidden>
+    <div class="modal-bg-pattern" aria-hidden="true"></div>
+
+    <header class="modal-header">
+      <div class="modal-badge-tag">
+        <span class="badge-dot"></span>
+        <span>01 / Perfil e Formação</span>
+      </div>
+
+      <button class="modal-close-btn" id="close-modal-sobre" aria-label="Fechar e voltar ao início">
+        <span class="close-label">Fechar</span>
+        <svg class="close-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </header>
+
+    <div class="modal-scroll-body">
+      <div class="modal-inner-container">
+        
+        <div class="modal-hero-heading">
+          <div class="modal-avatar-wrapper">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+          </div>
+          <div>
+            <h2 class="modal-title" id="modal-sobre-title">Sobre Mim</h2>
+            <p class="modal-lead-subtitle">Lucas Souza • Estudante Técnico & Entusiasta de Tecnologia</p>
+          </div>
+        </div>
+
+        <div class="modal-quote-block">
+          <p class="quote-text">
+            "Sou estudante do ensino médio técnico e tenho interesse por tecnologia, programação e esportes. Gosto de aprender coisas novas, explorar diferentes áreas e transformar ideias em projetos. Acredito que dedicação, curiosidade e criatividade são importantes para continuar evoluindo."
+          </p>
+        </div>
+
+        <div class="modal-details-grid">
+          
+          <div class="detail-card">
+            <div class="detail-icon-title">
+              <span class="detail-accent-bar"></span>
+              <h3>Formação Técnica</h3>
+            </div>
+            <p class="detail-text">
+              Cursando o <strong>Ensino Médio Integrado ao Técnico</strong>, com foco no desenvolvimento de raciocínio lógico, fundamentos de computação, criação de páginas web e soluções digitais aplicadas.
+            </p>
+            <ul class="detail-list">
+              <li>Lógica de Programação e Algoritmos</li>
+              <li>Estrutura de dados e desenvolvimento Frontend</li>
+              <li>Boas práticas, versionamento com Git e arquitetura limpa</li>
+            </ul>
+          </div>
+
+          <div class="detail-card">
+            <div class="detail-icon-title">
+              <span class="detail-accent-bar"></span>
+              <h3>Áreas de Interesse</h3>
+            </div>
+            <p class="detail-text">
+              Interesse contínuo por integrar tecnologia à vida prática, criando projetos autorais que unem usabilidade, desempenho e impacto visual moderno.
+            </p>
+            <div class="interest-tags-flex">
+              <span class="tag-pill">Programação Web</span>
+              <span class="tag-pill">Prática Esportiva</span>
+              <span class="tag-pill">Resolução de Problemas</span>
+              <span class="tag-pill">Design Minimalista</span>
+              <span class="tag-pill">Autonomia e Inovação</span>
+            </div>
+          </div>
+
+          <div class="detail-card">
+            <div class="detail-icon-title">
+              <span class="detail-accent-bar"></span>
+              <h3>Esportes e Disciplina</h3>
+            </div>
+            <p class="detail-text">
+              Os esportes representam equilíbrio, constância e superação. A mesma disciplina aplicada nos treinos guia o meu aprendizado diário em programação: persistência para solucionar desafios e atenção aos detalhes.
+            </p>
+          </div>
+
+          <div class="detail-card">
+            <div class="detail-icon-title">
+              <span class="detail-accent-bar"></span>
+              <h3>Valores e Competências</h3>
+            </div>
+            <div class="values-badges-grid">
+              <div class="value-item">
+                <span class="value-name">Dedicação</span>
+                <span class="value-desc">Compromisso em aprender a fundo e fazer bem feito</span>
+              </div>
+              <div class="value-item">
+                <span class="value-name">Curiosidade</span>
+                <span class="value-desc">Vontade constante de explorar o novo</span>
+              </div>
+              <div class="value-item">
+                <span class="value-name">Criatividade</span>
+                <span class="value-desc">Transformar ideias simples em projetos elegantes</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="modal-footer-bar">
+          <div class="status-indicator">
+            <span class="status-pulse-dot"></span>
+            <span>Atualmente estudando, programando e desenvolvendo novos conceitos.</span>
+          </div>
+
+          <button class="modal-return-btn" id="btn-return-sobre">
+            ← Voltar ao Início
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- CARTÃO EXPANDIDO: MEUS PROJETOS -->
+  <div class="expanded-card-modal" id="expanded-projetos" role="dialog" aria-modal="true" aria-labelledby="modal-projetos-title" hidden>
+    <div class="modal-bg-pattern" aria-hidden="true"></div>
+
+    <header class="modal-header">
+      <div class="modal-badge-tag">
+        <span class="badge-dot"></span>
+        <span>02 / Projetos Conceituais</span>
+      </div>
+
+      <button class="modal-close-btn" id="close-modal-projetos" aria-label="Fechar e voltar ao início">
+        <span class="close-label">Fechar</span>
+        <svg class="close-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </header>
+
+    <div class="modal-scroll-body">
+      <div class="modal-inner-container">
+
+        <div class="modal-hero-heading">
+          <div class="modal-avatar-wrapper">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+            </svg>
+          </div>
+          <div>
+            <h2 class="modal-title" id="modal-projetos-title">Meus Projetos</h2>
+            <p class="modal-lead-subtitle">Três propostas conceituais que refletem meus interesses em programação, organização e esportes.</p>
+          </div>
+        </div>
+
+        <div class="projects-showcase-grid">
+
+          <!-- PROJETO 1: TASKFLOW -->
+          <article class="project-showcase-card" id="project-taskflow">
+            <div class="project-card-top">
+              <span class="project-category-badge">Produtividade • Web</span>
+              <span class="project-index">01</span>
+            </div>
+
+            <div class="project-preview-viewport" aria-label="Prévia conceitual do TaskFlow">
+              <div class="editorial-preview">
+                <div class="preview-metric-row">
+                  <span class="preview-tag-clean">Fluxo de Trabalho</span>
+                  <span class="preview-val-clean">Metas Semanais</span>
+                </div>
+                <div class="preview-blocks-stack">
+                  <div class="preview-row-item">
+                    <span class="bullet-clean"></span>
+                    <span class="row-label">Organização e priorização diária</span>
+                  </div>
+                  <div class="preview-row-item">
+                    <span class="bullet-clean"></span>
+                    <span class="row-label">Acompanhamento visual de atividades</span>
+                  </div>
+                  <div class="preview-row-item">
+                    <span class="bullet-clean"></span>
+                    <span class="row-label">Interface focada em foco e consistência</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="project-info-body">
+              <h3 class="project-heading">TaskFlow</h3>
+              <p class="project-paragraph">
+                Proposta de aplicativo para organizar tarefas e acompanhar atividades do dia a dia. Focado em produtividade limpa, o conceito estrutura rotinas através de painéis visuais, níveis de prioridade e monitoramento do progresso diário.
+              </p>
+              
+              <div class="project-tech-tags">
+                <span class="tech-tag">Conceito Web</span>
+                <span class="tech-tag">Organização</span>
+                <span class="tech-tag">UI Minimalista</span>
+                <span class="tech-tag">Produtividade</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- PROJETO 2: CODELAB -->
+          <article class="project-showcase-card" id="project-codelab">
+            <div class="project-card-top">
+              <span class="project-category-badge">Educação • Frontend</span>
+              <span class="project-index">02</span>
+            </div>
+
+            <div class="project-preview-viewport" aria-label="Prévia conceitual do CodeLab">
+              <div class="editorial-preview">
+                <div class="preview-metric-row">
+                  <span class="preview-tag-clean">Lógica e Algoritmos</span>
+                  <span class="preview-val-clean">Didática Web</span>
+                </div>
+                <div class="preview-code-clean">
+                  <span class="code-comment">// Demonstração didática de lógica</span>
+                  <span class="code-statement">const aprendizado = {</span>
+                  <span class="code-indent">foco: "Programação e Prática",</span>
+                  <span class="code-indent">consistencia: true</span>
+                  <span class="code-statement">};</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="project-info-body">
+              <h3 class="project-heading">CodeLab</h3>
+              <p class="project-paragraph">
+                Projeto de página web com exemplos práticos de conceitos de programação. Uma plataforma didática concebida para demonstrar a lógica por trás de algoritmos, manipulação de dados e componentes de forma interativa e acessível.
+              </p>
+              
+              <div class="project-tech-tags">
+                <span class="tech-tag">Educação Técnica</span>
+                <span class="tech-tag">Lógica de Programação</span>
+                <span class="tech-tag">Algoritmos</span>
+                <span class="tech-tag">Exemplos Práticos</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- PROJETO 3: SPORTTRACK -->
+          <article class="project-showcase-card" id="project-sporttrack">
+            <div class="project-card-top">
+              <span class="project-category-badge">Saúde e Esportes • Dashboard</span>
+              <span class="project-index">03</span>
+            </div>
+
+            <div class="project-preview-viewport" aria-label="Prévia conceitual do SportTrack">
+              <div class="editorial-preview">
+                <div class="preview-metric-row">
+                  <span class="preview-tag-clean">Métricas Esportivas</span>
+                  <span class="preview-val-clean">Consistência</span>
+                </div>
+                <div class="sport-metrics-clean">
+                  <div class="metric-block">
+                    <span class="m-val">24.5 km</span>
+                    <span class="m-lbl">Volume Semanal</span>
+                  </div>
+                  <div class="metric-block">
+                    <span class="m-val">4'52"</span>
+                    <span class="m-lbl">Ritmo Médio</span>
+                  </div>
+                  <div class="metric-block">
+                    <span class="m-val">Constante</span>
+                    <span class="m-lbl">Evolução</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="project-info-body">
+              <h3 class="project-heading">SportTrack</h3>
+              <p class="project-paragraph">
+                Proposta de plataforma para acompanhar atividades esportivas e registrar evolução. Unindo condicionamento físico e tecnologia, a proposta apresenta painéis de telemetria para registrar treinos, consistência e métricas corporais.
+              </p>
+              
+              <div class="project-tech-tags">
+                <span class="tech-tag">Visualização de Dados</span>
+                <span class="tech-tag">Desempenho</span>
+                <span class="tech-tag">Hábitos Saudáveis</span>
+                <span class="tech-tag">Telemetria</span>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+        <div class="projects-disclaimer-box">
+          <p class="disclaimer-text">
+            <strong>Nota informativa:</strong> Os projetos acima constituem estudos e propostas conceituais desenvolvidos por Lucas Souza para demonstrar criatividade, estruturação de sistemas e visão de interfaces modernas. Não são links comerciais externos.
+          </p>
+        </div>
+
+        <div class="modal-footer-bar">
+          <span class="footer-hint">Clique em "Início" no menu superior ou use o botão para fechar a visualização.</span>
+          <button class="modal-return-btn" id="btn-return-projetos">
+            ← Voltar ao Início
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Rodapé discreto da página -->
+  <footer class="site-footer" id="site-footer">
+    <div class="footer-content">
+      <span class="footer-author">Lucas Souza</span>
+      <span class="footer-sep">•</span>
+      <span class="footer-desc">Portfólio Pessoal</span>
+    </div>
+  </footer>
+
+  <!-- Script principal com Three.js e controle de expansão -->
+  <script src="script.js"></script>
+</body>
+</html>
